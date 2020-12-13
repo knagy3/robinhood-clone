@@ -1,0 +1,39 @@
+.statsRow {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 26px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.statsRow:hover {
+  background-color: #31363a;
+}
+
+.statsRow__intro > h1 {
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+
+.statsRow__intro > p {
+  font-size: 12px;
+}
+
+.statsRow__numbers {
+  text-align: end;
+  font-weight: 500;
+}
+
+.statsRow__price {
+  padding-bottom: 4px;
+}
+
+.statsRow__percentageGreen {
+  color: #5ac53b;
+}
+
+.statsRow__percentageRed {
+  color: #ff1500;
+}
