@@ -16,6 +16,7 @@ function Stats() {
     const getMyStocks = () => {
         database
         .collection('myStocks')
+        .orderBy('ticker', 'desc')
         .onSnapshot( (snapshot) => {
             let promises = [];
             let tempData = [];
@@ -45,7 +46,7 @@ function Stats() {
     };
 
     useEffect(() => {
-        const stocksList = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
+        const stocksList = ["AAPL", "ACB", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
         let testData = [];
         getMyStocks();
         let promises = [];
@@ -64,7 +65,7 @@ function Stats() {
 
         Promise.all(promises).then(()=>{
             setStocksData(testData);
-          })
+        })
     }, []);
 
     return (
@@ -84,6 +85,7 @@ function Stats() {
                                 openPrice={stock.info.o}
                                 volume={stock.data.shares}
                                 price={stock.info.c}
+                                hideButton={false}
                             />
                         ))}
                     </div>
@@ -99,6 +101,7 @@ function Stats() {
                                 name={stock.name}
                                 openPrice={stock.o}
                                 price={stock.c}
+                                hideButton={true}
                             />
                         ))}
                     </div>

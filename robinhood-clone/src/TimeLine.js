@@ -3,7 +3,7 @@ import "./TimeLine.css";
 import { useStateValue } from './StateProvider';
 
 function TimeLine() {
-    const [{choosedDate}, dispatch] = useStateValue();
+    const [{}, dispatch] = useStateValue();
     const [state, setState] = useState("W");
 
     const handleClick = (date) => {

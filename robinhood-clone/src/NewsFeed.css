@@ -24,6 +24,9 @@
   color: #5ac53b !important;
   font-weight: bold;
   outline: none;
+  background-color: #1e2023;
+  border-radius: 5px;
+  border: 1px solid #42494d;
 }
 
 .newsfeed__dropdown > .Mui-focused:focus {

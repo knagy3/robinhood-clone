@@ -8,22 +8,20 @@ import { useStateValue } from './StateProvider';
 
 //const BASE_URL = "https://finnhub.io/api/v1/quote?symbol=";
 
-
-
 function LineGraph() {
   const [data, setData] = useState({});
-  //const [stocksData, setStocksData] = useState([]);
   const [{choosedDate, choosedShare}, dispatch] = useStateValue();
   //const [choosedDate, dispatch] = useStateValue();
 
   const getDateUnix = (date) => {
     let displayDate = {}
     let today = moment().format('MM/DD/YYYY, hh:mm:ss a');
-
+    console.log(date, today);
     switch (date) {
       case "D":
+        console.log("in D case");
         displayDate = {
-          from:  moment(moment().subtract(1, 'days').calendar()).unix(),
+          from:  moment(moment().startOf('day').format('MM/DD/YYYY, hh:mm:ss a')).unix(),
           to:  moment(today).unix()
         };
         break;
@@ -50,6 +48,7 @@ function LineGraph() {
           from:  moment(moment().startOf('day').format('MM/DD/YYYY, hh:mm:ss a')).unix(),
           to:  moment(today).unix()
         };
+        console.log("DEFAULT");
         break;
     }
     return displayDate;
@@ -57,9 +56,19 @@ function LineGraph() {
 
   const getStocksData = (stock) => {
     let resolution = null;
-    choosedDate.choosedDate == "Y" ? resolution = "D" : resolution = "15";
-    const displayDate = getDateUnix(choosedDate.choosedDate);
-    console.log(stock, displayDate);
+    
+    if (choosedDate === "D"){
+      resolution = "1";
+    } else if (choosedDate === "Y") {
+      resolution = "D";
+    } else {
+      resolution = "15";
+    }
+    
+    console.log(choosedDate, resolution);
+    const displayDate = getDateUnix(choosedDate);
+    console.log( moment.unix(displayDate.from).format('MM/DD/YYYY, hh:mm:ss a'));
+
     const BASE_URL = `https://finnhub.io/api/v1/stock/candle?symbol=${stock}&resolution=${resolution}&from=${displayDate.from}&to=${displayDate.to}`;
     const KEY_URL = `&token=${key}`;
 

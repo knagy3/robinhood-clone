@@ -34,7 +34,7 @@ import { useStateValue } from './StateProvider';
 // });
 
 function NewsFeed() {
-    const [popularTopics, setTopics] = useState([
+    const [popularTopics, ] = useState([
         "Technology",
         "Top Movies",
         "Upcoming Earnings",
@@ -48,7 +48,7 @@ function NewsFeed() {
     ]);
 
     const [seed, setSeed] = useState("");
-    const [choosedShare, dispatch] = useStateValue();
+    const [{}, dispatch] = useStateValue();
     const [shares, setShares] = useState([]);
     const [share, setInputShare] = useState("ACB");
 
@@ -127,7 +127,6 @@ function NewsFeed() {
                         <FormControl className="newsfeed__dropdown">
                             <Select
                                 id="demo-customized-select"
-                                
                                 variant="filled"
                                 disableUnderline="true"
                                 value={share}
